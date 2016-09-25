@@ -2,6 +2,6 @@
 
 <ul>
   <% @posts.each do |post| %>
-    <li class="post-title"><%= post.title %></li>
+    <li class="post-title"><a href="http://localhost:3000/posts/post_page/<%= post.id %>" target="blank"><%= post.title %></a></li>
   <% end %>
 </ul>
