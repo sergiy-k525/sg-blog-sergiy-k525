@@ -3,7 +3,7 @@ require "test_helper"
 class PostTest < ActiveSupport::TestCase
   def setup
     create_two_posts
-    visit "/posts/post_page/1"
+    visit "/posts/1"
 
   end
 

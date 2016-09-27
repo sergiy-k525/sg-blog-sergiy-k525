@@ -2,6 +2,8 @@
 
 <ul>
   <% @posts.each do |post| %>
-    <li class="post-title"><a href="http://localhost:3000/posts/post_page/<%= post.id %>" target="blank"><%= post.title %></a></li>
+    <li class="post-title"><%= link_to post.title, post_path(post.id)%></li>
   <% end %>
 </ul>
+
+<p class="create_post_button"><%= button_to "Create post", "posts/new", :method => "get" %>

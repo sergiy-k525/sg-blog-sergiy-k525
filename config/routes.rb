@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "posts#index"
-  get 'posts/post_page/:id' => 'posts#post_page#:id'
+  resources :posts
+  #post 'posts' => 'posts#create'
+  #  get 'posts/post_page/:id' => 'posts#post_page#:id'
+  #  get 'posts/create_post_page' => 'posts#create_post_page'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
