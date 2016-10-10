@@ -1,0 +1,11 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Soft group blog", root_path, class: "navbar-brand" %>
+    </div>
+
+    <div class="nav navbar-nav navbar-right" id="new-post-button">
+      <%= button_to "New Post", new_post_path, method: :get, class: "btn btn-default btn-sm navbar-btn" %>
+    </div>
+  </div>
+</nav>
