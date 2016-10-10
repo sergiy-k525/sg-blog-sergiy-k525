@@ -1,11 +1,13 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h2 class="text-center post-title"><%= @post.title %></h2>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-<p><input type="button" value="Edit">
-<p><input type="button" value="Delete">
+<article class="col-xs-offset-2 col-xs-8 post-body">
+  <p>
+    <%= @post.body %>
+  </p>
+
+  <div class="post-controls text-right">
+    <%= button_to "Edit Post", edit_post_path(@post.id), method: :get, class: "btn btn-default" %>
+    <p></p>
+    <%= button_to "Delete Post", post_path(@post.id), method: :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
+  </div>
+</article>

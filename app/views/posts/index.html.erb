@@ -1,9 +1,16 @@
-<h2> SG Blog </h2>
-
-<ul>
-  <% @posts.each do |post| %>
-    <li class="post-title"><%= link_to post.title, post_path(post.id)%></li>
-  <% end %>
-</ul>
-
-<p class="create_post_button"><%= button_to "Create post", "posts/new", :method => "get" %>
+<div class="row">
+  <div class="col-xs-offset-4 col-xs-4 col-sm-offset-0 col-sm-12">
+    <div class="list-header text-center">
+      <h1>Top Posts</h1>
+      <p class="lead">(click on post for further reading)</p>
+    </div>
+    <div class="list-group">
+      <% @posts.each do |post| %>
+        <%= link_to post_path(post.id), class: "list-group-item" do %>
+          <h4 class="list-group-item-heading"><%= post.title %></h4>
+          <p class="list-group-item-text"><%= limited_posts_body(post.body) %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

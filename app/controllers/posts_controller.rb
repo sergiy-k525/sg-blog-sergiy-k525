@@ -1,28 +1,35 @@
 class PostsController < ApplicationController
+  before_filter :find_post, only: [:edit, :show, :update, :destroy]
+
   def index
-    @posts = Post.all
+    @posts = Post.latest_five
   end
 
-# def create_post_page
-#
-# end
+  def new
+    @post = Post.new
+  end
 
-def new
+  def edit
+  end
 
-end
+  def show
+  end
 
-def show
+  def update
+  end
+
+  def create
+    @post = Post.create(params[:posts])
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to root_path
+  end
+
+  private
+
+  def find_post
     @post = Post.find(params[:id])
   end
-
-def create
-    render text: params[:post].inspect
-  end
-
-  # def post_page
-  #   if params[:id]
-  #     @post = Post.where('id = ?', params[:id])
-  #   end
-  # end
-
 end
