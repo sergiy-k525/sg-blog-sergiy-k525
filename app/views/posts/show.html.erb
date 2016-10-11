@@ -11,3 +11,21 @@
     <%= button_to "Delete Post", post_path(@post.id), method: :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
   </div>
 </article>
+
+
+<article class="col-xs-offset-2 col-xs-8">
+    <p class="text-center">Comments</p>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+  </article>
+
+<%= render "comments/form" %>

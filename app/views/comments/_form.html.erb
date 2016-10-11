@@ -1,0 +1,23 @@
+<section class="col=xs-offset-2 col-xs-8">
+<p class="text-center">Add a comment:</p>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+<div class="form-group">
+  <div class="text-center">
+    <%= f.label :commenter %><br />
+    <%= f.text_field :commenter %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="text-center">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+</div>
+<div class="text-center">
+  <%= button_tag(type: 'submit', class: "btn btn-lg btn-warning") do %>
+    Create comment!
+  <% end %>
+</div>
+<% end %>
+</section>
