@@ -5,4 +5,5 @@ require "capybara/rails"
 
 class ActiveSupport::TestCase
   include Capybara::DSL
+  include Rails.application.routes.url_helpers
 end

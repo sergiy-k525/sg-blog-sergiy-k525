@@ -1,5 +1,5 @@
 <section class="col-xs-offset-2 col-xs-8">
-  <%= form_for @post do |post| %>
+  <%= form_for @post, html: { multipart: true } do |post| %>
     <div class="form-group">
       <div class="text-center">
         <%= post.label "Title of your post" %>
@@ -14,9 +14,16 @@
       <%= post.text_area :body, class: "form-control", rows: "15" %>
     </div>
 
+    <div class="form-group">
+      <div class="text-center">
+        <%= post.label "Upload a post's image'" %>
+      </div>
+      <%= post.file_field :image, class: "form-control" %>
+    </div>
+
     <div class="text-center">
       <%= button_tag(type: 'submit', class: "btn btn-lg btn-warning") do %>
-        Make'em read!
+        <%= current_page?(new_post_path) ? "Make'em read!" : "Now its OK" %>
       <% end %>
     </div>
   <% end %>

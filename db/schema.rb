@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20161011125934) do
     t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
 end

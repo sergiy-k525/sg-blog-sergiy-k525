@@ -1,31 +1,42 @@
 <h2 class="text-center post-title"><%= @post.title %></h2>
 
 <article class="col-xs-offset-2 col-xs-8 post-body">
-  <p>
-    <%= @post.body %>
-  </p>
+  <%= image_tag @post.image.url if @post.image? %>
+
+  <p><%= @post.body %></p>
 
   <div class="post-controls text-right">
-    <%= button_to "Edit Post", edit_post_path(@post.id), method: :get, class: "btn btn-default" %>
-    <p></p>
-    <%= button_to "Delete Post", post_path(@post.id), method: :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
+    <%= link_to "Edit Post", edit_post_path(@post.id), method: :get, class: "btn btn-default" %>
+    <%= link_to "Delete Post", post_path(@post.id), method: :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
   </div>
 </article>
 
 
-<article class="col-xs-offset-2 col-xs-8">
-    <p class="text-center">Comments</p>
-<% @post.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
+<div class="col-xs-offset-2 col-xs-8 comments">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">comments on the topic</h3>
+    </div>
+    <div class="panel-body">
+      <%= form_for [@post, @comment], remote: true do |comment| %>
+        <div class="form-group">
+          <div class="col-xs-10">
+            <%= comment.text_area :body, class: "form-control", rows: "2" %>
+            <%= comment.hidden_field :post_id, value: @post.id %>
+          </div>
+          <div class="col-xs-1">
+            <%= button_tag(type: 'submit', class: "btn btn-sm btn-warning") do %>
+              <%= "My 2 cents" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
-  </article>
-
-<%= render "comments/form" %>
+    <div id="comments">
+      <% @post.comments.each do |comment| %>
+        <%= comment_body(comment) %>
+      <% end %>
+    </div>
+  </div>
+</div>
