@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   root "posts#index"
 
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
+
+  resources :users
+  match '/signup',  to: 'users#new',            via: 'get'
+
+  
+  get "/home", to: "pages#home", as: "home"
+  get "/geocoding", to: "pages#geocoding", as: "geocoding"
+  get "/reverse_geocoding", to: "pages#reverse_geocoding", as: "reverse_geocoding"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

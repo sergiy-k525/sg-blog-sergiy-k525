@@ -4,6 +4,11 @@
       <h1>Top Posts</h1>
       <p class="lead">(click on post for further reading)</p>
     </div>
+    <% if signed_in? %>
+    <div class="text-center" id="new-post-button">
+      <%= button_to "New Post", new_post_path, method: :get, class: "btn btn-success btn-large navbar-btn" %>
+    </div>
+    <% end %>
     <div class="list-group">
       <% @posts.each do |post| %>
         <%= link_to post_path(post.id), class: "list-group-item" do %>

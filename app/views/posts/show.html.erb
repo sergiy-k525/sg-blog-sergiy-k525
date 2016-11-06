@@ -5,13 +5,20 @@
 
   <p><%= @post.body %></p>
 
+<% if signed_in? %>
   <div class="post-controls text-right">
     <%= link_to "Edit Post", edit_post_path(@post.id), method: :get, class: "btn btn-default" %>
     <%= link_to "Delete Post", post_path(@post.id), method: :delete, class: "btn btn-danger", data: { confirm: "Oh, really?" } %>
   </div>
+  <% else %>
+  <div class="post-controls text-right">
+    <%= link_to "For edit Post, please login", signin_path, method: :get, class: "btn btn-default" %>
+    <%= link_to "For delete Post, please login", signin_path, method: :get, class: "btn btn-danger"%>
+  </div>
+  <% end %>
 </article>
 
-
+<% if signed_in? %>
 <div class="col-xs-offset-2 col-xs-8 comments">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -26,7 +33,7 @@
           </div>
           <div class="col-xs-1">
             <%= button_tag(type: 'submit', class: "btn btn-sm btn-warning") do %>
-              <%= "My 2 cents" %>
+              <%= "Comment" %>
             <% end %>
           </div>
         </div>
@@ -40,3 +47,10 @@
     </div>
   </div>
 </div>
+<% else %>
+<div class="col-xs-offset-2 col-xs-8 ">
+  <div class="panel-heading">
+    <h3 class="panel-title">For comment, please login!</h3>
+  </div>
+</div>
+<% end %>
